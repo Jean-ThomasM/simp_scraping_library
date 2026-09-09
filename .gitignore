@@ -1,10 +1,14 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+# Environnements virtuels
+venv/
+env/
+.env
 
-# Virtual environments
-.venv
+# Données et Logs (à ne pas push sur GitHub si volumineux, bien que le brief puisse demander le CSV)
+logs/
+__pycache__/
+*.pyc
+
+# IDE et Mac
+.vscode/
+.idea/
+.DS_Store
