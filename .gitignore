@@ -1,10 +1,8 @@
 # Environnements virtuels
 venv/
 env/
-.env
 
 # Données et Logs (à ne pas push sur GitHub si volumineux, bien que le brief puisse demander le CSV)
-logs/
 __pycache__/
 *.pyc
 
@@ -14,7 +12,8 @@ __pycache__/
 .DS_Store
 
 # Fichiers de données
-*.csv
-
+# *.csv
+# 
+# 
 # Dossier de travail temporaire
 essais/

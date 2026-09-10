@@ -1,7 +1,6 @@
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
-
 from utils.parse_utils import clean_price, extract_real_stock, parse_rating
 
 
