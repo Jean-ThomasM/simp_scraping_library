@@ -12,3 +12,9 @@ __pycache__/
 .vscode/
 .idea/
 .DS_Store
+
+# Fichiers de données
+*.csv
+
+# Dossier de travail temporaire
+essais/

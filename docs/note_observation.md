@@ -1,21 +1,16 @@
-# Note d'observation : Fiabilité des champs Prix et Taxes
+# Note d'observation
 
-Au cours de l'exploration des fiches produits sur `books.toscrape.com`, j'ai analysé en détail la structuration de la table d'informations (la balise `table.table-striped`), et plus spécifiquement les trois champs liés à la facturation : 
-- `Price (excl. tax)` (Prix Hors Taxe)
-- `Price (incl. tax)` (Prix Toutes Taxes Comprises)
-- `Tax` (Montant de la taxe)
+## Résumé des données
+Notre scraper extrait un jeu de 1000 produits. La base de données contient le titre, la catégorie, le stock réel, l'identifiant unique (UPC), les prix HT/TTC, la taxe et la note.
 
-### Constatations empiriques
-Après avoir scrapé un échantillon significatif du catalogue (et étendu ensuite à l'ensemble du jeu de données), j'ai constaté un comportement systématique sur l'intégralité des livres :
-**Le montant de la taxe est invariablement de 0.00 £.**
+## Analyse
+Les champs extraits sont fiables à l'exception des variables de tarification. En effet, sur l'intégralité du catalogue, le champ `Tax` est systématiquement égal à `0.00 £`. 
 
-Par conséquent, l'équation mathématique `Prix HT + Taxe = Prix TTC` est parfaitement respectée par le site, mais de manière "artificielle" : puisque `Tax = 0.00 £`, on retrouve systématiquement la même valeur (à l'arrondi près) pour le Prix HT et le Prix TTC (par exemple, 51.77 £ HT et 51.77 £ TTC). 
+## Réponse à la question du brief
+*Question : "Sur quels titres le concurrent est-il en rupture ou en stock faible, et lesquels sont les mieux notés de son catalogue ?"*
 
-### Conclusion sur la fiabilité des champs
-Bien que les données extraites soient techniquement consistantes (l'addition est correcte), **les champs liés à la fiscalité ne reflètent pas une réalité commerciale**. 
+**Réponse :** 
+En interrogeant notre base de données (voir le script Pandas `analyze_pandas.py`), on constate qu'**aucun livre n'est en rupture de stock** sur ce site. Cependant, de nombreux livres ont un stock faible (1 ou 2 exemplaires).
+Concernant les notes, on observe une répartition parfaite : environ 200 livres ont la note maximale de 5 étoiles, ce qui permet à la direction de Bouquineo de cibler l'analyse sur ces best-sellers.
 
-D'un point de vue "business" pour l'entreprise Bouquineo, on ne peut en aucun cas se fier au fait que le concurrent vend ses livres hors taxe à ses clients, car il s'agit très probablement d'un site "bac à sable" où la gestion complexe de la TVA (qui varie selon le type d'ouvrage et le pays de l'acheteur) n'a tout simplement pas été implémentée dans le backend de la plateforme.
-
-Dans une application en production réelle, si la même anomalie était constatée, il faudrait impérativement :
-1. Écarter l'analyse fiscale de ces données dans nos rapports commerciaux.
-2. Ne conserver que le "Prix de vente public affiché" (ici le TTC) pour évaluer notre compétitivité.
+*(L'autre enseignement majeur est mathématique : puisque la taxe est toujours de 0, le prix HT est systématiquement égal au prix TTC. Cette donnée est donc inutilisable pour une véritable analyse fiscale concurrentielle.)*

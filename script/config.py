@@ -1,8 +1,10 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-# Charge les variables d'environnement depuis le fichier .env
-load_dotenv()
+# Charge les variables d'environnement depuis le fichier .env à la racine
+env_path = Path(__file__).parent.parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # Configuration Scraping
 BASE_URL = os.getenv("BASE_URL", "https://books.toscrape.com")
