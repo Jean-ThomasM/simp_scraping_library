@@ -3,7 +3,6 @@ venv/
 env/
 
 # Données et Logs (à ne pas push sur GitHub si volumineux, bien que le brief puisse demander le CSV)
-logs/
 __pycache__/
 *.pyc
 
