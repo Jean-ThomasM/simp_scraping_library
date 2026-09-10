@@ -2,8 +2,11 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from utils.parse_utils import parse_rating, clean_price, extract_real_stock
 
-def extract_list_page(html, base_url):
-    """Extrait les URLs des fiches produits depuis une page de liste."""
+def extract_list_page(html: str, base_url: str) -> tuple[list[str], str | None]:
+    """
+    Rôle : Analyser (parser) le HTML d'une page de LISTE.
+    Ne fait aucune requête HTTP. Il se contente de lire le texte fourni et d'isoler les URLs.
+    """
     soup = BeautifulSoup(html, 'html.parser')
     book_urls = []
     
@@ -20,8 +23,11 @@ def extract_list_page(html, base_url):
     
     return book_urls, next_page_url
 
-def extract_book_details(html, source_url):
-    """Extrait toutes les informations détaillées d'une fiche produit."""
+def extract_book_details(html: str, source_url: str) -> dict:
+    """
+    Rôle : Analyser (parser) le HTML d'une FICHE PRODUIT détaillée.
+    Retourne un dictionnaire standardisé prêt à être inséré en BDD.
+    """
     soup = BeautifulSoup(html, 'html.parser')
     
     # Titre

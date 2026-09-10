@@ -3,8 +3,15 @@ import time
 import logging
 from config import USER_AGENT, REQUEST_DELAY
 
-def get_page(url, retries=3):
-    """Télécharge une page web avec temporisation, User-Agent et retries."""
+def get_page(url: str, retries: int = 3) -> str | None:
+    """
+    Rôle : Gérer les requêtes HTTP (Le "Facteur").
+    Il ne sait rien du HTML ni de la BDD. Son seul rôle est d'aller chercher le texte brut d'une page.
+    
+    Args:
+        url: L'adresse web à télécharger.
+        retries: Le nombre de tentatives en cas d'échec de connexion.
+    """
     headers = {
         'User-Agent': USER_AGENT
     }
