@@ -2,6 +2,8 @@ import csv
 import logging
 from utils.db_utils import get_connection
 
+logger = logging.getLogger(__name__)
+
 def export_to_csv(output_file='data/export_bouquineo.csv'):
     """Exporte le contenu de la table books vers un fichier CSV."""
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -29,10 +31,10 @@ def export_to_csv(output_file='data/export_bouquineo.csv'):
             writer.writerow(col_names)
             writer.writerows(records)
             
-        logging.info(f"Export réussi : {len(records)} livres exportés dans {output_file}")
+        logger.info(f"Export réussi : {len(records)} livres exportés dans {output_file}")
         
     except Exception as e:
-        logging.error(f"Erreur lors de l'export CSV : {e}")
+        logger.error(f"Erreur lors de l'export CSV : {e}")
 
 if __name__ == "__main__":
     export_to_csv()

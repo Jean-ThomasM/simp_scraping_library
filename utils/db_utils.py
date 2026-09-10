@@ -1,6 +1,10 @@
+import logging
+
 import psycopg
 import config
 import logging
+
+logger = logging.getLogger(__name__)
 
 def get_connection():
     """Crée et retourne une connexion à la base de données."""
@@ -21,7 +25,7 @@ def get_scraped_urls():
                 records = cursor.fetchall()
                 return {row[0] for row in records}
     except Exception as e:
-        logging.error(f"Erreur lors de la récupération des URLs : {e}")
+        logger.error(f"Erreur lors de la récupération des URLs : {e}")
         return set()
 
 def insert_category(cursor, category_name):
@@ -58,5 +62,5 @@ def insert_book(book_data):
             conn.commit()
             return True
     except Exception as e:
-        logging.error(f"Erreur lors de l'insertion du livre {book_data.get('url')}: {e}")
+        logger.error(f"Erreur lors de l'insertion du livre {book_data.get('url')}: {e}")
         return False

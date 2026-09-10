@@ -19,6 +19,7 @@ def setup_logging():
 
 def main():
     setup_logging()
+    logger = logging.getLogger(__name__)
 
     parser = argparse.ArgumentParser(description="Bouquineo Scraper")
     parser.add_argument(
@@ -37,7 +38,7 @@ def main():
     try:
         run_orchestrator(sample_size=sample_size)
     except KeyboardInterrupt:
-        logging.info(
+        logger.info(
             "Interruption volontaire par l'utilisateur. Le scraper s'arrête proprement."
         )
         sys.exit(0)
