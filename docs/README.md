@@ -35,9 +35,14 @@ Toutes les commandes Python doivent être lancées depuis la racine du projet.
 - **Utilisateur** : `myuser`
 - **Mot de passe** : `mypassword`
 
-## Comment supprimer les données
-Si vous souhaitez réinitialiser complètement la base de données :
-```bash
-docker compose down -v
-```
-Puis relancez le conteneur avec `docker compose up -d`.
+## Comment supprimer la BDD (et tout relancer)
+Si vous souhaitez réinitialiser complètement la base de données pour forcer une nouvelle extraction complète :
+
+1. Supprimez le conteneur et ses volumes de données persistants (`-v`) :
+   ```bash
+   docker compose down -v
+   ```
+2. Relancez une base de données totalement vierge (le script init.sql sera relu automatiquement) :
+   ```bash
+   docker compose up -d
+   ```
