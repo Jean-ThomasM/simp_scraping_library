@@ -1,9 +1,11 @@
 # Projet Bouquineo - Scraper
 
 ## Résumé
+
 Ce scraper collecte les données de 1000 livres depuis `books.toscrape.com`. Il extrait les informations cachées sur les fiches produits (UPC, stock réel, notation) et les sauvegarde de manière résiliente dans une base PostgreSQL.
 
 ## Principales commandes
+
 Toutes les commandes Python doivent être lancées depuis la racine du projet.
 
 1. **Démarrer l'environnement :**
@@ -29,6 +31,7 @@ Toutes les commandes Python doivent être lancées depuis la racine du projet.
    ```
 
 ## Comment se connecter à la BDD (DBeaver)
+
 - **Hôte** : `localhost`
 - **Port** : `5432`
 - **Base de données** : `bouquineo`
@@ -36,6 +39,7 @@ Toutes les commandes Python doivent être lancées depuis la racine du projet.
 - **Mot de passe** : `mypassword`
 
 ## Comment supprimer la BDD (et tout relancer)
+
 Si vous souhaitez réinitialiser complètement la base de données pour forcer une nouvelle extraction complète :
 
 1. Supprimez le conteneur et ses volumes de données persistants (`-v`) :
